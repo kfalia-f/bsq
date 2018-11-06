@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bsq.c                                              :+:      :+:    :+:   */
+/*   ft_stdin.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmaynard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 14:33:19 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/06 13:00:11 by jmaynard         ###   ########.fr       */
+/*   Created: 2018/11/06 12:58:01 by jmaynard          #+#    #+#             */
+/*   Updated: 2018/11/06 13:31:29 by jmaynard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_rdin(char ***map)
+void	ft_add(char ***map, int size)
 {
-	int		ret;
-	int		i;
-	char	buf;
-
-	while (ret = read(0, buf, 1) > 0)
-	{
-		
-	}
-}
-
-int		main(int argc, char **argv)
-{
-	char	**map;
-
-	if (argc == 1)
-	{
-		map = ft_stdin();
-	}
-	if (ft_rdfl(argc, argv, &map) == 0)
-		return (0);
+	char	**nmap;
 	
-	return (0);
-}
+
+void	ft_stdin(char **map)
+{
+	char	sym;
+	int		len;
+	int		fd;
+
+	fd = ft_param(&len, 0);
+	map = (char *)malloc(len * sizeof(char *));
+	while(sym != '\n')
+	{
+		read(fd, &sym, 1);
+		map
+	ft_add(&map, wid);

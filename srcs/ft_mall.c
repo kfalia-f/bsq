@@ -6,7 +6,7 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 17:52:54 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/06 12:16:31 by jmaynard         ###   ########.fr       */
+/*   Updated: 2018/11/06 13:31:42 by jmaynard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	ft_map(char ***map, char *argv)
 	char	sym;
 	int		k;
 
-	fd = ft_param(&len, argv);
+	fd = open(argv, O_RDONLY);
+	if (fd < 0)
+		ft_error(1);
+	fd = ft_param(&len, fd);
 	k = 0;
 	while (sym != '\n')
 	{
@@ -39,7 +42,7 @@ void	ft_map(char ***map, char *argv)
 	close(fd);
 }
 
-int		ft_param(int *len, char *argv)
+int		ft_param(int *len, int fd)
 {
 	int		i;
 	int		fd;
@@ -47,9 +50,6 @@ int		ft_param(int *len, char *argv)
 	char	*buff;
 
 	i = 0;
-	fd = open(argv, O_RDONLY);
-	if (fd < 0)
-		ft_error(1);
 	while (sym != '\n')
 	{
 		read(fd, &sym, 1);
