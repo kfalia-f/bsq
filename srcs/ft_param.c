@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rdfl.c                                          :+:      :+:    :+:   */
+/*   ft_param.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 17:54:56 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/06 17:54:41 by kfalia-f         ###   ########.fr       */
+/*   Created: 2018/11/06 17:39:10 by kfalia-f          #+#    #+#             */
+/*   Updated: 2018/11/06 17:49:22 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int		ft_rdfl(int argc, char **argv, int ***map)
+int		ft_param(int fd) 
 {
 	int		i;
-	int		fd;
-	
-	i = 1;
-	while (i < argc)
+	char	sym;
+	char	buff[10];
+
+	i = 0;
+	sym = '0';
+	while (sym != '\n')
 	{
-		fd = open(argv[i], O_RDONLY);
-		if (fd == -1)
-			ft_error(1);
-		ft_map(map, argv[i]);
-		ft_rd(fd, *map);
-		ft_alg(*map);
-		if (close(fd) < 0)
-			ft_error(2);
-		i++;
+		read(fd, &sym, 1);
+		buff[i++] = sym;
 	}
-	return (1);
+	buff[i] = '\0';
+	g_len = ft_atoi(buff);
+	i = 0;
+	while (*(buff + i) >= '0' && *(buff + i) <= '9')
+		i++;
+	g_em = buff[i++];
+	g_ob = buff[i++];
+	g_fu = buff[i++];
+	if (g_em == g_ob || g_ob == g_fu || g_em == g_fu)
+		ft_error(3);
+	return (fd);
 }

@@ -6,60 +6,89 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 18:18:24 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/06 12:16:36 by jmaynard         ###   ########.fr       */
+/*   Updated: 2018/11/06 17:50:00 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_print_map(char ***map)
+void	ft_print_map(int **map)
 {
 	int		i;
 	int		j;
 
 	i = 0;
-	while (map[i])
+	while (i != g_len)
 	{
-		ft_putstr(map[i]);
+		j = 0;
+		while (map[i][j] != -1)
+		{
+			if (map[i][j] == 0)
+				ft_putchar(g_ob);
+			else if (map[i][j] == (int)g_fu)
+				ft_putchar(g_fu);
+			else if (map[i][j] > 0)
+				ft_putchar(g_em);
+			j++;
+		}
+		ft_putchar('\n');
 		i++;
 	}
 }
 
-void	ft_alg(char ***map)
+void	ft_max(int **map, int max, int maxi, int maxj)
+{
+	int i;
+	int j;
+
+	i = maxi;
+	while (i != (maxi - max))
+	{
+		j = maxj;
+		while (j != (maxj - max))
+		{
+			map[i][j] = (int)g_fu;
+			j--;
+		}
+		i--;
+	}
+}
+
+int		ft_min(int a, int b, int c)
+{
+	int min;
+
+	min = a;
+	if (b < min)
+		min = b;
+	else if (c < min)
+		min = c;
+	return (min);
+}
+
+void	ft_alg(int **map)
 {
 	int 	i;
 	int 	j;
 	int		maxi;
 	int		maxj;
 	int		max;
-	int		**r;
 
-	i = 0;
-	j = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] == g_em)
-				r[i][j] = 1;
-			else
-				r[i][j] = 0;
-		j++;
-		}
-	i++;
-	}
 	i = 1;
-	j = 1;
-	while (r[i])
+	while (i != g_len)
 	{
-		j = 0;
-		while (r[i][j])
+		j = 1;
+		while (map[i][j] != -1)
 		{
-			r[i][j] += ft_min(r[i - 1][j - 1], r[i - 1][j], r[i][j - 1]);
-			if (r[i][j] > max)
+			if (map[i][j] == 0)
 			{
-				max = r[i][j];
+				j++;
+				break ;
+			}
+			map[i][j] += ft_min(map[i - 1][j - 1], map[i - 1][j], map[i][j - 1]);
+			if (map[i][j] > max)
+			{
+				max = map[i][j];
 				maxi = i;
 				maxj = j;
 			}
@@ -67,16 +96,6 @@ void	ft_alg(char ***map)
 		}
 		i++;
 	}
-	i = maxi;
-	while (i != (maxi - max))
-	{
-		j = maxj;
-		while (j != (maxj - max))
-		{
-			map[i][j] = g_fu;
-			j--;
-		}
-		i--;
-	}
-	ft_print_map(&map);
+	ft_max(map, max, maxi, maxj);
+	ft_print_map(map);
 }

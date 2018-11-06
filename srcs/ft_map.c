@@ -1,34 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rdfl.c                                          :+:      :+:    :+:   */
+/*   ft_mall.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 17:54:56 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/06 17:54:41 by kfalia-f         ###   ########.fr       */
+/*   Created: 2018/11/05 17:52:54 by kfalia-f          #+#    #+#             */
+/*   Updated: 2018/11/06 17:49:38 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int		ft_rdfl(int argc, char **argv, int ***map)
+void	ft_map(int ***map, char *argv)
 {
-	int		i;
 	int		fd;
-	
-	i = 1;
-	while (i < argc)
+	char	sym;
+	int		k;
+	int		i;
+
+	sym = '0';
+	fd = open(argv, O_RDONLY);
+	if (fd < 0)
+		ft_error(1);
+	fd = ft_param(fd);
+	k = 0;
+	while (sym != '\n')
 	{
-		fd = open(argv[i], O_RDONLY);
-		if (fd == -1)
-			ft_error(1);
-		ft_map(map, argv[i]);
-		ft_rd(fd, *map);
-		ft_alg(*map);
-		if (close(fd) < 0)
-			ft_error(2);
-		i++;
+		read(fd, &sym, 1);
+		k++;
 	}
-	return (1);
+	*map = (int **)malloc(g_len * sizeof(int *));
+	if (!map)
+		ft_error(4);
+	i = g_len - 1;
+	while (i >= 0)
+	{
+		(*map)[i] = (int *)malloc(k * sizeof(int));
+		if (!(*map))
+			ft_error(4);
+		i--;
+	}
+	if (close(fd) < 0)
+		ft_error(2);
 }

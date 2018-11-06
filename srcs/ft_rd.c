@@ -6,13 +6,28 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 17:54:09 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/06 12:12:30 by jmaynard         ###   ########.fr       */
+/*   Updated: 2018/11/06 16:18:38 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_rd(int fd, char **map)
+void	ft_fill(int **map, int *i, int *j, char buf)
+{
+	if (buf == g_em)
+		map[*i][(*j)++] = 1;
+	else if (buf == g_ob)
+		map[*i][(*j)++] = 0;
+	else if (buf == '\n')
+	{
+		map[(*i)++][*j] = -1;
+		(*j) = 0;
+	}
+	else
+		ft_error(3);
+}
+
+void	ft_rd(int fd, int **map)
 {
 	int		i;
 	int		j;
@@ -28,18 +43,6 @@ void	ft_rd(int fd, char **map)
 		if (flag != 5)
 			flag++;
 		else
-		{
-			if (buf != '\n')
-			{
-				map[i][j] = buf;
-				j++;
-			}
-			else
-			{
-				map[i][j] = '\0';
-				i++;
-				j = 0;
-			}
-		}
+			ft_fill(map, &i, &j, buf);
 	}
 }
