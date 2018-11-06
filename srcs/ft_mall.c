@@ -6,37 +6,64 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 17:52:54 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/05 18:05:46 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/06 12:16:31 by jmaynard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_mall(char ***map, char *argv)
+void	ft_map(char ***map, char *argv)
 {
 	int		fd;
-	int		a;
-	char	i;
-	char	buf[4];
+	int		len;
+	char	sym;
 	int		k;
-	int		d;
 
-	fd = open(argv, O_RDONLY);
-	read(fd, &i, 1);
-	a = i - '0';
-	read(fd, buf, 4);
+	fd = ft_param(&len, argv);
 	k = 0;
-	while (i != '\n')
+	while (sym != '\n')
 	{
-		read(fd, &i, 1);
+		read(fd, &sym, 1);
 		k++;
 	}
-	d = 0;
-	*map = (char **)malloc(a * sizeof(char *));
-	while (d < a)
+	*map = (char **)malloc(len * sizeof(char *));
+	if (!map)
+		ft_error(4);
+	while (len - 1 > 0)
 	{
-		(*map)[d] = (char *)malloc(k * sizeof(char));
-		d++;
+		(*map)[len - 1] = (char *)malloc(k * sizeof(char));
+		if (!(*map))
+			ft_error(4);
+		len--;
 	}
 	close(fd);
+}
+
+int		ft_param(int *len, char *argv)
+{
+	int		i;
+	int		fd;
+	char	sym;
+	char	*buff;
+
+	i = 0;
+	fd = open(argv, O_RDONLY);
+	if (fd < 0)
+		ft_error(1);
+	while (sym != '\n')
+	{
+		read(fd, &sym, 1);
+		buff[i++] = sym;
+	}
+	buff[i] = '\0';
+	(*len) = ft_atoi(buff);
+	i = 0;
+	while (*(buff + i) >= '0' && *(buff + i) <= '9')
+		i++;
+	g_em = buff[i++];
+	g_ob = buff[i++];
+	g_fu = buff[i++];
+	if (g_em == g_ob || g_ob == g_fu || g_em == g_fu)
+		ft_error(3);
+	return (fd);
 }

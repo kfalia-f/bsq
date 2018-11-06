@@ -6,7 +6,7 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 18:18:24 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/05 20:02:57 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/06 12:16:36 by jmaynard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_print_map(char ***map)
 	}
 }
 
-void	ft_alg(char ***map, char em, char ob, char fu)
+void	ft_alg(char ***map)
 {
 	int 	i;
 	int 	j;
@@ -41,7 +41,7 @@ void	ft_alg(char ***map, char em, char ob, char fu)
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (map[i][j] == em)
+			if (map[i][j] == g_em)
 				r[i][j] = 1;
 			else
 				r[i][j] = 0;
@@ -73,7 +73,7 @@ void	ft_alg(char ***map, char em, char ob, char fu)
 		j = maxj;
 		while (j != (maxj - max))
 		{
-			map[i][j] = fu;
+			map[i][j] = g_fu;
 			j--;
 		}
 		i--;
