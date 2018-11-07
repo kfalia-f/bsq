@@ -6,7 +6,7 @@
 /*   By: jmaynard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 13:28:21 by jmaynard          #+#    #+#             */
-/*   Updated: 2018/11/07 14:14:14 by jmaynard         ###   ########.fr       */
+/*   Updated: 2018/11/07 15:18:22 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ int		ft_atoi(char *str)
 	if (num > 0)
 		return (num * sign);
 	ft_error(3);
+	return (0);
 }

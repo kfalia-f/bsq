@@ -6,7 +6,7 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 17:54:56 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/07 14:20:59 by jmaynard         ###   ########.fr       */
+/*   Updated: 2018/11/07 15:59:30 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int		ft_rdfl(int argc, char **argv, int ***map)
 		if (close(fd) < 0)
 			ft_error(2);
 		i++;
+		if (i + 1 <= argc)
+			ft_putchar('\n');
 	}
 	return (1);
 }

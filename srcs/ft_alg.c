@@ -6,7 +6,7 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 18:18:24 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/06 17:50:00 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/07 15:25:08 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_alg(int **map)
 			if (map[i][j] == 0)
 			{
 				j++;
-				break ;
+				continue ;
 			}
 			map[i][j] += ft_min(map[i - 1][j - 1], map[i - 1][j], map[i][j - 1]);
 			if (map[i][j] > max)

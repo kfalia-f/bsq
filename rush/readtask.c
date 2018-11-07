@@ -6,7 +6,7 @@
 /*   By: lmaron-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/04 20:20:31 by lmaron-g          #+#    #+#             */
-/*   Updated: 2018/11/04 20:20:35 by lmaron-g         ###   ########.fr       */
+/*   Updated: 2018/11/07 16:34:35 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,10 @@ int		ft_realloc(char **buff, int size)
 	if (!buff)
 		return (0);
 	if ((nbuff = (char *)malloc(size * 2)) == 0)
-		if ((nbuff = (char *)malloc(size + 1)) == 0)
-		{
-			free(*buff);
-			return (0);
-		}
-		else
-			nsize = size + 1;
+	{
+		free(*buff);
+		return (0);
+	}
 	else
 		nsize = size * 2;
 	i = 0;
