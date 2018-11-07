@@ -6,7 +6,7 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 18:18:24 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/07 20:15:49 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/07 21:32:06 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,13 @@ int		ft_min(int a, int b, int c)
 	return (min);
 }
 
+int		ft_find(int **map, int i, int j)
+{
+	map[i][j] += ft_min(map[i - 1][j - 1],
+			map[i - 1][j], map[i][j - 1]);
+	return (map[i][j]);
+}
+
 void	ft_alg(int **map)
 {
 	int		i;
@@ -82,19 +89,13 @@ void	ft_alg(int **map)
 		j = 1;
 		while (map[i][j] != -1)
 		{
-			if (map[i][j] == 0)
-			{
-				j++;
-				continue ;
-			}
-			map[i][j] += ft_min(map[i - 1][j - 1],
-					map[i - 1][j], map[i][j - 1]);
-			if (map[i][j] > max)
-			{
-				max = map[i][j];
-				maxi = i;
-				maxj = j;
-			}
+			if (map[i][j] != 0)
+				if (ft_find(map, i, j) > max)
+				{
+					max = map[i][j];
+					maxi = i;
+					maxj = j;
+				}
 			j++;
 		}
 		i++;
