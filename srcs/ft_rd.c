@@ -6,11 +6,40 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 17:54:09 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/07 19:33:10 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/07 20:43:49 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+void	ft_check(int **map, int flag, int i, int j)
+{
+	i = 0;
+	if (g_len < 2 || g_wid < 3)
+	{
+		while (i < g_len)
+		{
+			j = 0;
+			while (j < g_wid)
+			{
+				if (map[i][j] == 1 && flag == 1)
+				{
+					ft_putchar(g_fu);
+					flag = 2;
+				}
+				else if (map[i][j] == 0)
+					ft_putchar(g_ob);
+				else if (map[i][j] == 1)
+					ft_putchar(g_em);
+				else
+					ft_putchar('\n');
+				j++;
+			}
+			i++;
+		}
+		exit(EXIT_SUCCESS);
+	}
+}
 
 void	ft_fill(int **map, int *i, int *j, char buf)
 {
@@ -33,14 +62,13 @@ void	ft_rd(int fd, int **map)
 {
 	int		i;
 	int		j;
-	int		ret;
 	int		flag;
 	char	buf;
 
 	i = 0;
 	j = 0;
 	flag = 0;
-	while ((ret = read(fd, &buf, BUF_SIZE)))
+	while (read(fd, &buf, BUF_SIZE))
 	{
 		if (flag == 0 && buf != '\n')
 			continue ;
@@ -56,4 +84,5 @@ void	ft_rd(int fd, int **map)
 	}
 	if (i != g_len)
 		ft_error(3);
+	ft_check(map, flag, i, j);
 }

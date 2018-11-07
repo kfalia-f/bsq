@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/07 16:43:53 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/07 19:56:43 by kfalia-f         ###   ########.fr       */
+/*   Created: 2018/11/07 20:51:46 by kfalia-f          #+#    #+#             */
+/*   Updated: 2018/11/07 20:54:51 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_map1(int ***map, int f)
+void	ft_map_std(int ***map, int f)
 {
 	char	sym;
 	int		i;
@@ -58,7 +58,7 @@ void	ft_rd_stdin(int fd, int **map)
 	f = open("1", O_RDONLY);
 	if (f == -1)
 		ft_error(1);
-	ft_map1(&map, f);
+	ft_map_std(&map, f);
 	f = open("1", O_RDONLY);
 	ft_rd(f, map);
 	ft_alg(map);

@@ -6,7 +6,7 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 15:25:22 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/07 19:48:43 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/07 20:53:20 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int		ft_atoi(char *str);
 void	ft_alg(int **map);
 void	ft_number(int *num, char *str, int *flaq);
 int		ft_param(int fd);
-void	ft_stdin(int **map);
 void	ft_rd_stdin(int fd, int **map);
 
 #endif
