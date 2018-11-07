@@ -6,29 +6,34 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 15:25:22 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/06 12:16:42 by jmaynard         ###   ########.fr       */
+/*   Updated: 2018/11/07 14:00:10 by jmaynard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADERS_H
-# define HEADERS_H
+#ifndef HEADER_H
+# define HEADER_H
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # define BUF_SIZE 1
 
-char	q_em;
+char	g_em;
 char	g_ob;
 char	g_fu;
+int		g_len;
 
 void	ft_putchar(char c);
 void	ft_putnbr(int nb);
 void	ft_putstr(char *str);
 int		ft_strlen(char *s);
-int		ft_rdfl(int argc, char **argv, char ***map);
-void	ft_rd(int fd, char **map);
-void	ft_map(char ***map, char *argv);
+int		ft_rdfl(int argc, char **argv, int ***map);
+void	ft_rd(int fd, int **map);
+void	ft_map(int ***map, char *argv);
 void	ft_error(int er);
 int		ft_atoi(char *str);
+void	ft_alg(int **map);
+void	ft_number(int *num, char *str, int *flaq);
+int		ft_param(int fd);
+void	ft_stdin(int **map);
 
 #endif

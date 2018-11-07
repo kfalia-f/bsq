@@ -6,7 +6,7 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:39:10 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/06 17:49:22 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/07 14:17:53 by jmaynard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_param(int fd)
 	g_em = buff[i++];
 	g_ob = buff[i++];
 	g_fu = buff[i++];
-	if (g_em == g_ob || g_ob == g_fu || g_em == g_fu)
+	if (buff[++i] != '\0' || g_em == g_ob || g_ob == g_fu || g_em == g_fu)
 		ft_error(3);
 	return (fd);
 }
