@@ -6,7 +6,7 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 18:18:24 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/07 21:32:06 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/07 21:51:38 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ void	ft_print_map(int **map)
 			j++;
 		}
 		ft_putchar('\n');
+		free(map[i]);
 		i++;
 	}
+	free(map);
 }
 
 void	ft_max(int **map, int max, int maxi, int maxj)
