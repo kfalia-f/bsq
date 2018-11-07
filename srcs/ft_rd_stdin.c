@@ -6,45 +6,62 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 16:43:53 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/07 17:29:48 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/07 19:56:43 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
+void	ft_map1(int ***map, int f)
+{
+	char	sym;
+	int		i;
+
+	sym = '0';
+	g_wid = 0;
+	f = ft_param(f);
+	while (sym != '\n')
+	{
+		read(f, &sym, 1);
+		g_wid++;
+	}
+	*map = (int **)malloc(g_len * sizeof(int *));
+	if (!map)
+		ft_error(4);
+	i = g_len - 1;
+	while (i >= 0)
+	{
+		(*map)[i] = (int *)malloc(g_wid * sizeof(int));
+		if (!(*map))
+			ft_error(4);
+		i--;
+	}
+	if (close(f) < 0)
+		ft_error(2);
+}
+
 void	ft_rd_stdin(int fd, int **map)
 {
-	int		ret;
 	char	buf;
-	char	s[5];
 	int		i;
-	int		flag;
+	int		f;
 
 	i = 1;
+	f = open("1", O_TRUNC | O_RDWR);
+	if (f == -1)
+		ft_error(1);
 	buf = '0';
-	while ((ret = read(fd, &buf, 1)) && flag == 0)
-	{
-		s[0] = buf;
-		if (buf != '\n')
-		{
-			read(fd, &buf, 1);
-			s[i] = buf;
-			i++;
-			continue ;
-		}
-		flag = 1;
-		ft_putnbr(g_len);
-		s[i] = '\0';
-		g_wid = i;
-		i = 0;
-		map = (int **)malloc(g_len * sizeof(int *));
-		while (s[i] != '\0')
-		{
-			if (s[i] == g_em)
-				*map[i] = 1;
-			else
-				*map[i] = 0;
-		}
-		*map[i] = -1;
-	}
+	while (read(fd, &buf, 1))
+		write(f, &buf, 1);
+	if (close(f) < 0)
+		ft_error(2);
+	f = open("1", O_RDONLY);
+	if (f == -1)
+		ft_error(1);
+	ft_map1(&map, f);
+	f = open("1", O_RDONLY);
+	ft_rd(f, map);
+	ft_alg(map);
+	if (close(f) < 0)
+		ft_error(2);
 }

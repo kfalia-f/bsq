@@ -6,7 +6,7 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 17:54:56 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/07 15:59:30 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/07 20:02:58 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_rdfl(int argc, char **argv, int ***map)
 {
 	int		i;
 	int		fd;
-	
+
 	i = 1;
 	while (i < argc)
 	{

@@ -6,7 +6,7 @@
 /*   By: jmaynard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 13:28:21 by jmaynard          #+#    #+#             */
-/*   Updated: 2018/11/07 15:18:22 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/07 19:53:26 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,9 @@ int		ft_atoi(char *str)
 	while ((str[i] == ' ' || str[i] == '\t') && str[i] != '\0')
 		i++;
 	if (str[i] == '-')
-	{
-		sign = -1;
+		ft_error(3);
+	if (str[i] == '+')
 		i++;
-	}
 	while (str[i] != '\0' && flaq > 0)
 	{
 		(((int)str[i] >= 48) && ((int)str[i] <= 57)) ?

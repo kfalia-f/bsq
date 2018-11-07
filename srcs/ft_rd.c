@@ -6,7 +6,7 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 17:54:09 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/07 15:52:46 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/07 19:33:10 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	ft_rd(int fd, int **map)
 		if (flag == 0 && buf != '\n')
 			continue ;
 		else if (flag == 0 && buf == '\n')
-			{
-				flag = 1;
-				continue ;
-			}
+		{
+			flag = 1;
+			continue ;
+		}
 		else if (i < g_len)
 			ft_fill(map, &i, &j, buf);
 		else

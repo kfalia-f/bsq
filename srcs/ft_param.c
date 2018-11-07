@@ -6,13 +6,13 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 17:39:10 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/07 14:17:53 by jmaynard         ###   ########.fr       */
+/*   Updated: 2018/11/07 20:01:56 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int		ft_param(int fd) 
+int		ft_param(int fd)
 {
 	int		i;
 	char	sym;
