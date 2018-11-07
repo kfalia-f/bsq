@@ -6,7 +6,7 @@
 /*   By: kfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 17:52:54 by kfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/07 20:01:30 by kfalia-f         ###   ########.fr       */
+/*   Updated: 2018/11/07 21:22:55 by kfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	ft_map(int ***map, char *argv)
 		read(fd, &sym, 1);
 		g_wid++;
 	}
-	*map = (int **)malloc(g_len * sizeof(int *));
+	i = g_len;
+	*map = (int **)malloc(i * sizeof(int *));
 	if (!map)
 		ft_error(4);
 	i = g_len - 1;
